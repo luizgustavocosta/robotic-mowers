@@ -21,12 +21,20 @@ Knowledge about the robotic mowers movements, i.e Left Right Move and so on.
      Inside you can execute the following command to ```mvn clean verify``` to generate the executable jar.
 
      ![mvn clean verify](imgs/mvn_clean_verify.png)
+     
+   * Generate the docker image
+   
+     If you more confortable with docker, just execute the command ```docker build -t robot-mower .``` to generate the image
+     
+     ![GenerateDockerImage](imgs/generate_docker_image.png)
 
 # How to run
+
+  This section depends on previous section choice.
   
   ## java -jar
   
-     * Execute on your command the following .: ``java -jar target/costa-luiz-1.0-SNAPSHOT-jar-with-dependencies.jar `` and the program will start.
+  Execute on your command the following .: ``java -jar target/costa-luiz-1.0-SNAPSHOT-jar-with-dependencies.jar `` and the program will start.
   
   ![Starting](imgs/starting.png)
   
@@ -34,9 +42,8 @@ Knowledge about the robotic mowers movements, i.e Left Right Move and so on.
   
   ## Docker
   
-  ![GenerateDockerImage](imgs/generate_docker_image.png)
+  Once the image is created, use the command ```docker run -it robot-mower``` to run the program
   
-  Once the image is created, use the command ```docker run -it robot-mower``` to run the program 
   ![RunWithDocker](imgs/run_with_docker.png)
    
 # User interface
