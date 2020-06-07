@@ -5,11 +5,11 @@ package com.luiz.robotic.mower.infrastructure;
  */
 public class Grid {
 
+    private static final int INITIAL_VALUE = 0;
     private final int minAxisX;
     private final int minAxisY;
     private final int maxAxisX;
     private final int maxAxisY;
-    private final int initialValue = 0;
 
     /**
      * Instantiates a new Grid.
@@ -19,9 +19,9 @@ public class Grid {
      */
     public Grid(int maxAxisX, int maxAxisY) {
         this.maxAxisX = maxAxisX;
-        this.minAxisX = initialValue;
+        this.minAxisX = INITIAL_VALUE;
         this.maxAxisY = maxAxisY;
-        this.minAxisY = initialValue;
+        this.minAxisY = INITIAL_VALUE;
     }
 
     /**

@@ -14,6 +14,11 @@ import static org.junit.jupiter.api.Assertions.assertNull;
  */
 class RoboticMowerValidationTest implements WithAssertions {
 
+    /**
+     * Validate valid position.
+     *
+     * @param position the position
+     */
     @ParameterizedTest
     @ValueSource(strings = {"1 2 N", "3 3 E", "99 0 S", "42 42 W", "0 0 N"})
     @DisplayName("Validate valid position")
@@ -22,6 +27,11 @@ class RoboticMowerValidationTest implements WithAssertions {
         assertNull(throwable);
     }
 
+    /**
+     * Validate invalid position.
+     *
+     * @param position the position
+     */
     @ParameterizedTest
     @ValueSource(strings = {"1 2 M", "2 1 T", "N 1 2", "1 2 NN", "0 0 0"})
     @DisplayName("Validate invalid position")

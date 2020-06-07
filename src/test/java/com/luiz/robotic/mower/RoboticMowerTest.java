@@ -11,24 +11,43 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * The type Robotic mower test.
+ */
 @TestInstance(TestInstance.Lifecycle.PER_METHOD)
 @DisplayName("Robotic Mower test")
 class RoboticMowerTest {
 
+    /**
+     * The Robotic mower.
+     */
     RoboticMower roboticMower;
 
+    /**
+     * Sets up.
+     */
     @BeforeEach
     void setUp() {
         Grid grid = new Grid(100, 200);
         roboticMower = new RoboticMower(grid);
     }
 
+    /**
+     * Should start the mower on initial position.
+     */
     @Test
     @DisplayName("Initial position")
     void shouldStartTheMowerOnInitialPosition() {
         assertEquals("0 0 N", roboticMower.toString(), "The initial position should be 0,0");
     }
 
+    /**
+     * Should deploy a mower to a new position.
+     *
+     * @param coordinate the coordinate
+     * @param movement   the movement
+     * @param expected   the expected
+     */
     @ParameterizedTest
     @CsvSource({
             "1 2 N, LMLMLMLMM, 1 3 N",

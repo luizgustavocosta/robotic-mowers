@@ -6,9 +6,15 @@ import org.junit.jupiter.api.TestInstance;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * The type Robotic mower service test.
+ */
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class RoboticMowerServiceTest {
 
+    /**
+     * Should send the movements and get the final position of the mower.
+     */
     @Test
     @DisplayName("Should send the movements and get the final position of the mower")
     void shouldSendTheMovementsAndGetTheFinalPositionOfTheMower() {

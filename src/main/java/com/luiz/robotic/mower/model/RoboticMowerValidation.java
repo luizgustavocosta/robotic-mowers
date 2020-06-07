@@ -30,6 +30,13 @@ public class RoboticMowerValidation {
     }
 
     /**
+     * Utility class don't instantiate
+     */
+    private RoboticMowerValidation() {
+        throw new IllegalStateException("Utility class");
+    }
+
+    /**
      * Validate position boolean.
      *
      * @param position the position
