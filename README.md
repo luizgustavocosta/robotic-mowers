@@ -34,7 +34,7 @@ Knowledge about the robotic mowers movements, i.e Left Right Move and so on.
 
  * The user interface is build using the CLI, so pay attention for the correct use.
  
- * To start typing information regarding the upper-right coordinates of plateau, press the <ENTER> key
+ * To start typing information regarding the upper-right coordinates of plateau, press the ENTER key
     ![Running](imgs/running.png)
     
  * The help is available on every launch program, to use type help
