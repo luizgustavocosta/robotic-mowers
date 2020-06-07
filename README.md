@@ -24,11 +24,20 @@ Knowledge about the robotic mowers movements, i.e Left Right Move and so on.
 
 # How to run
   
-  * Execute on your command the following .: ``java -jar target/costa-luiz-1.0-SNAPSHOT-jar-with-dependencies.jar `` and the program will start.
+  ## java -jar
+  
+     * Execute on your command the following .: ``java -jar target/costa-luiz-1.0-SNAPSHOT-jar-with-dependencies.jar `` and the program will start.
   
   ![Starting](imgs/starting.png)
   
    Every time you run the program you can choose the help option to know how to execute or run it directly
+  
+  ## Docker
+  
+  ![GenerateDockerImage](imgs/generate_docker_image.png)
+  
+  Once the image is created, use the command ```docker run -it robot-mower``` to run the program 
+  ![RunWithDocker](imgs/run_with_docker.png)
    
 # User interface
 

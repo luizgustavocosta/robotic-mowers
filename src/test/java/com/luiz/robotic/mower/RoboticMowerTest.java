@@ -38,7 +38,7 @@ class RoboticMowerTest {
     @Test
     @DisplayName("Initial position")
     void shouldStartTheMowerOnInitialPosition() {
-        assertEquals("0 0 N", roboticMower.toString(), "The initial position should be 0,0");
+        assertEquals("0 0 N", roboticMower.toString(), "The initial position should be 0 0 N");
     }
 
     /**
