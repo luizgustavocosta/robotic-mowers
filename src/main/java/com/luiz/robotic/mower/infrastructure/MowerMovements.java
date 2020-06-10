@@ -8,13 +8,28 @@ public enum MowerMovements {
     /**
      * Left mower movements.
      */
-    L,
+    LEFT("L"),
     /**
      * Right mower movements.
      */
-    R,
+    RIGHT("R"),
     /**
      * Move mower movements.
      */
-    M
+    MOVE("M");
+
+    private final String movement;
+
+    MowerMovements(String movement) {
+        this.movement = movement;
+    }
+
+    /**
+     * Gets movement.
+     *
+     * @return the movement
+     */
+    public String getMovement() {
+        return movement;
+    }
 }

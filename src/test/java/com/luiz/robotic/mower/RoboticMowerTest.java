@@ -38,7 +38,7 @@ class RoboticMowerTest {
     @Test
     @DisplayName("Initial position")
     void shouldStartTheMowerOnInitialPosition() {
-        assertEquals("0 0 N", roboticMower.toString(), "The initial position should be 0 0 N");
+        assertEquals("0 0 N", roboticMower.getCurrentCoordinates(), "The initial position should be 0 0 N");
     }
 
     /**
@@ -56,6 +56,6 @@ class RoboticMowerTest {
     @DisplayName("Move the Robotic Mower")
     void shouldDeployAMowerToANewPosition(String coordinate, String movement, String expected) {
         this.roboticMower.execute(coordinate, movement);
-        assertEquals(expected, roboticMower.toString(), "New deploy position");
+        assertEquals(expected, roboticMower.getCurrentCoordinates(), "New deploy position");
     }
 }

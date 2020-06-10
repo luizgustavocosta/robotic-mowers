@@ -9,17 +9,48 @@ public enum CompassPoints {
     /**
      * North compass.
      */
-    N,
+    NORTH("N"),
     /**
      * East compass.
      */
-    E,
+    EAST("E"),
     /**
      * South compass.
      */
-    S,
+    SOUTH("S"),
     /**
      * West compass.
      */
-    W
+    WEST("W");
+
+
+    private final String direction;
+
+    CompassPoints(String direction) {
+        this.direction = direction;
+    }
+
+    /**
+     * Gets direction.
+     *
+     * @return the direction
+     */
+    public String getDirection() {
+        return direction;
+    }
+
+    /**
+     * Gets point.
+     *
+     * @param direction the direction
+     * @return the point
+     */
+    public static CompassPoints getPoint(String direction) {
+        for (CompassPoints compassPoint : values()) {
+            if (direction.equals(compassPoint.getDirection())) {
+                return compassPoint;
+            }
+        }
+        return null;
+    }
 }

@@ -19,7 +19,7 @@ class CompassPointsTest {
     @ParameterizedTest
     @ValueSource(strings = {"N", "E", "S", "W"})
     void shouldHaveFourCardinalPoints(String cardinalPoint) {
-        assertNotNull(CompassPoints.valueOf(cardinalPoint));
+        assertNotNull(CompassPoints.getPoint(cardinalPoint));
     }
 
     /**
