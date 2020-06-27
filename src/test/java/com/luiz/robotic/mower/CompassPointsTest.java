@@ -1,6 +1,6 @@
 package com.luiz.robotic.mower;
 
-import com.luiz.robotic.mower.infrastructure.CompassPoints;
+import com.luiz.robotic.mower.model.CompassPoints;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -19,7 +19,7 @@ class CompassPointsTest {
     @ParameterizedTest
     @ValueSource(strings = {"N", "E", "S", "W"})
     void shouldHaveFourCardinalPoints(String cardinalPoint) {
-        assertNotNull(CompassPoints.valueOf(cardinalPoint));
+        assertNotNull(CompassPoints.getPoint(cardinalPoint));
     }
 
     /**

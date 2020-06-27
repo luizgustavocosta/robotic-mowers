@@ -1,8 +1,5 @@
 package com.luiz.robotic.mower.model;
 
-import com.luiz.robotic.mower.infrastructure.CompassPoints;
-import com.luiz.robotic.mower.infrastructure.MowerMovements;
-
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -20,11 +17,11 @@ public class RoboticMowerValidation {
         REGEX_COORDINATE = "\\d+\\s\\d+";
 
         REGEX_MOVEMENT = Stream.of(MowerMovements.values())
-                .map(MowerMovements::toString)
+                .map(MowerMovements::getMovement)
                 .collect(Collectors.joining(".*", "[.*","]+"));
 
         REGEX_POSITION = "\\d+\\s\\d+\\s" + Stream.of(CompassPoints.values())
-                .map(CompassPoints::toString)
+                .map(CompassPoints::getDirection)
                 .collect(Collectors.joining(".*", "[.*","]"));
 
     }
@@ -44,7 +41,7 @@ public class RoboticMowerValidation {
     public static void validatePosition(String position) {
         Objects.requireNonNull(position);
         if (!position.trim().matches(REGEX_POSITION)) {
-            throw new IllegalArgumentException("Invalid position .:" +position);
+            throw new IllegalArgumentException("Invalid position .: " +position);
         }
     }
 
@@ -56,7 +53,7 @@ public class RoboticMowerValidation {
     public static void validateMovement(String movement) {
         Objects.requireNonNull(movement);
         if (!movement.trim().matches(REGEX_MOVEMENT)) {
-            throw new IllegalArgumentException("Invalid movement .:" +movement);
+            throw new IllegalArgumentException("Invalid movement .: " +movement);
         }
     }
 
@@ -68,7 +65,7 @@ public class RoboticMowerValidation {
     public static void validateCoordinate(String coordinate) {
         Objects.requireNonNull(coordinate);
         if (!coordinate.trim().matches(REGEX_COORDINATE)) {
-            throw new IllegalArgumentException("Invalid coordinate .:"+coordinate);
+            throw new IllegalArgumentException("Invalid coordinate .: "+coordinate);
         }
     }
 }

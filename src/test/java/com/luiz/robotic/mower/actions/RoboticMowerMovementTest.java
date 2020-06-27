@@ -19,15 +19,4 @@ class RoboticMowerMovementTest {
         final RoboticMowerMovement roboticMowerMovement = new RoboticMowerMovement("90 94");
         assertNotNull(roboticMowerMovement);
     }
-
-    /**
-     * Should send a new movement and receive a response.
-     */
-    @Test
-    @DisplayName("Send a new movement and receive a response")
-    void shouldSendANewMovementAndReceiveAResponse() {
-        final RoboticMowerMovement mowerMovement = new RoboticMowerMovement("90 94");
-        final String finalPosition = mowerMovement.move("9 9 W", "LLLL");
-        assertNotNull(finalPosition);
-    }
 }

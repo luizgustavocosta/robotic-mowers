@@ -1,6 +1,6 @@
 package com.luiz.robotic.mower.helper;
 
-import com.luiz.robotic.mower.infrastructure.MowerMovements;
+import com.luiz.robotic.mower.model.MowerMovements;
 import com.luiz.robotic.mower.model.RoboticMowerValidation;
 import org.assertj.core.api.WithAssertions;
 import org.junit.jupiter.api.DisplayName;

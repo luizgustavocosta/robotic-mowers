@@ -1,7 +1,5 @@
 package com.luiz.robotic.mower.model;
 
-import com.luiz.robotic.mower.infrastructure.*;
-
 import java.util.Optional;
 
 /**
@@ -19,7 +17,7 @@ public class RoboticMower {
      */
     public RoboticMower(Grid grid) {
         this.grid = grid;
-        this.orientation = new Orientation(CompassPoints.N, 0, 0);
+        this.orientation = new Orientation(CompassPoints.NORTH, 0, 0);
     }
 
     /**
@@ -28,7 +26,8 @@ public class RoboticMower {
      */
     private void deploy(String positions) {
         final String[] positionValues = positions.split(" ");
-        this.orientation = new Orientation(CompassPoints.valueOf(positionValues[2]),
+        this.orientation = new Orientation(
+                CompassPoints.getPoint(positionValues[2]),
                 Integer.parseInt(positionValues[0]), Integer.parseInt(positionValues[1]));
     }
 
@@ -36,17 +35,16 @@ public class RoboticMower {
      * Move.
      *
      * @param position the position
-     * @param movement   the movement
+     * @param movement the movement
      */
-    public String execute(String position, String movement) {
+    public void execute(String position, String movement) {
         deploy(position);
         move(movement);
-        return this.toString();
     }
 
     private void move(String movement) {
         for (String currentMovement : movement.split("")) {
-            this.orientation = currentMovement.equals(MowerMovements.M.toString()) ?
+            this.orientation = currentMovement.equals(MowerMovements.MOVE.getMovement()) ?
                     movePosition(this.orientation) :
                     moveDirection(currentMovement);
         }
@@ -71,28 +69,34 @@ public class RoboticMower {
         int x = orientation.getX();
         int y = orientation.getY();
         switch (orientation.getCompassDirection()) {
-            case N:
-                y = Optional.ofNullable((y + 1 > this.grid.getMaxAxisY()) ? null : y + 1)
+            case NORTH:
+                y = Optional.ofNullable(y + 1 > this.grid.getMaxAxisY() ? null : y + 1)
                         .orElseThrow(IllegalStateException::new);break;
-            case S:
-                y = Optional.ofNullable((y - 1 < this.grid.getMinAxisY()) ? null : y - 1)
+            case SOUTH:
+                y = Optional.ofNullable(y - 1 < this.grid.getMinAxisY() ? null : y - 1)
                         .orElseThrow(IllegalStateException::new);break;
-            case W:
-                x = Optional.ofNullable((x - 1 < this.grid.getMinAxisX()) ? null : x - 1)
+            case WEST:
+                x = Optional.ofNullable(x - 1 < this.grid.getMinAxisX() ? null : x - 1)
                             .orElseThrow(IllegalStateException::new);break;
-            case E:
-                x = Optional.ofNullable((x + 1 > this.grid.getMaxAxisX()) ? null : x + 1)
+            case EAST:
+                x = Optional.ofNullable(x + 1 > this.grid.getMaxAxisX() ? null : x + 1)
                         .orElseThrow(IllegalStateException::new);break;
         }
         return new Orientation(orientation.getCompassDirection(), x, y);
     }
 
+    //    public String getCurrentCoordinates() {
+//        return String.format("%-2d%-2d%s", this.orientation.getX(), this.orientation.getY(),
+//                this.orientation.getCompassDirection().getDirection());
+//    }
+
+
     /**
      * To string of this class
-     * @return String
+     *
+     * @return String current coordinates
      */
-    public String toString() {
-        return String.format("%-2d%-2d%s", this.orientation.getX(), this.orientation.getY(),
-                this.orientation.getCompassDirection());
+    public Orientation getOrientation() {
+        return orientation;
     }
 }
