@@ -1,4 +1,4 @@
-package com.luiz.robotic.mower.infrastructure;
+package com.luiz.robotic.mower.model;
 
 /**
  * The plateau is divided up into a grid to simply the navigation

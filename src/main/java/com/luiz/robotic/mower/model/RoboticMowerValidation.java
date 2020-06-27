@@ -1,8 +1,5 @@
 package com.luiz.robotic.mower.model;
 
-import com.luiz.robotic.mower.infrastructure.CompassPoints;
-import com.luiz.robotic.mower.infrastructure.MowerMovements;
-
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;

@@ -1,4 +1,4 @@
-package com.luiz.robotic.mower.infrastructure;
+package com.luiz.robotic.mower.model;
 
 /**
  * The type Orientation.

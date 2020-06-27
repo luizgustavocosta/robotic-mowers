@@ -1,6 +1,6 @@
 package com.luiz.robotic.mower;
 
-import com.luiz.robotic.mower.infrastructure.Grid;
+import com.luiz.robotic.mower.model.Grid;
 import com.luiz.robotic.mower.model.RoboticMower;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -38,7 +38,7 @@ class RoboticMowerTest {
     @Test
     @DisplayName("Initial position")
     void shouldStartTheMowerOnInitialPosition() {
-        assertEquals("0 0 N", roboticMower.getCurrentCoordinates(), "The initial position should be 0 0 N");
+        assertEquals("0 0 N", getFinalPosition(), "The initial position should be 0 0 N");
     }
 
     /**
@@ -53,9 +53,15 @@ class RoboticMowerTest {
             "1 2 N, LMLMLMLMM, 1 3 N",
             "3 3 E, MMRMMRMRRM, 5 1 E"
     })
-    @DisplayName("Move the Robotic Mower")
     void shouldDeployAMowerToANewPosition(String coordinate, String movement, String expected) {
-        this.roboticMower.execute(coordinate, movement);
-        assertEquals(expected, roboticMower.getCurrentCoordinates(), "New deploy position");
+        roboticMower.execute(coordinate, movement);
+        assertEquals(expected, getFinalPosition(), "New deploy position");
+    }
+
+    private String getFinalPosition() {
+        return String.join(" ",
+                    String.valueOf(roboticMower.getOrientation().getX()),
+                    String.valueOf(roboticMower.getOrientation().getY()),
+                    roboticMower.getOrientation().getCompassDirection().getDirection());
     }
 }

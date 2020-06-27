@@ -1,6 +1,7 @@
 package com.luiz.robotic.mower;
 
 import com.luiz.robotic.mower.actions.RoboticMowerMovement;
+import com.luiz.robotic.mower.model.RoboticMowerInstruction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -55,9 +56,9 @@ public class Application {
                     System.exit(1);
                 }
             }
-            List<String> mowerResponse = new ArrayList<>();
             String plateauCoordinates = scanner.nextLine();
-            RoboticMowerMovement mowerMovement = new RoboticMowerMovement(plateauCoordinates);
+            List<RoboticMowerInstruction> instructions = new ArrayList<>();
+
             while (true) {
                 String position = scanner.nextLine();
                 if ("".equals(position)) {
@@ -67,9 +68,21 @@ public class Application {
                 if ("".equals(movements)) {
                     break;
                 }
-                mowerResponse.add(mowerMovement.move(position, movements));
+
+                final RoboticMowerInstruction instruction = RoboticMowerInstruction.RoboticMowerInstructionBuilder.aRoboticMowerInstruction()
+                        .withPosition(position)
+                        .withMovements(movements)
+                        .build();
+
+                instructions.add(instruction);
             }
-            mowerResponse.forEach(logger::info);
+            RoboticMowerMovement mowerMovement = new RoboticMowerMovement(plateauCoordinates);
+            instructions
+                    .forEach(roboticMowerInstruction -> {
+                                mowerMovement.move(roboticMowerInstruction.getPosition(),
+                                        roboticMowerInstruction.getMovements());
+                                mowerMovement.print();
+                            });
         }
         logger.info("End of program");
     }

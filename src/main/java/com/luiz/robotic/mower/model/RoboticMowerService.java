@@ -1,7 +1,5 @@
 package com.luiz.robotic.mower.model;
 
-import com.luiz.robotic.mower.infrastructure.Grid;
-
 import java.util.Objects;
 
 /**
@@ -14,14 +12,17 @@ public class RoboticMowerService {
      */
     private final Grid grid;
     private final RoboticMower roboticMower;
+    private final RoboticMowerPrint roboticPrint;
 
     /**
      * Instantiates a new Robotic mower service.
      *
-     * @param x the x
-     * @param y the y
+     * @param x            the x
+     * @param y            the y
+     * @param roboticPrint the robotic print
      */
-    public RoboticMowerService(int x, int y) {
+    public RoboticMowerService(int x, int y, RoboticMowerPrint roboticPrint) {
+        this.roboticPrint = roboticPrint;
         this.grid = new Grid(x, y);
         this.roboticMower = new RoboticMower(grid);
     }
@@ -31,13 +32,21 @@ public class RoboticMowerService {
      *
      * @param position the position
      * @param movement the movement
-     * @return the string
      */
-    public String execute(String position, String movement) {
+    public void execute(String position, String movement) {
         Objects.requireNonNull(position);
         Objects.requireNonNull(movement);
         RoboticMowerValidation.validatePosition(position);
         RoboticMowerValidation.validateMovement(movement);
-        return roboticMower.execute(position, movement).getCurrentCoordinates();
+        roboticMower.execute(position, movement);
+    }
+
+    /**
+     * Print string.
+     *
+     * @return the string
+     */
+    public void print() {
+        roboticPrint.print(this.roboticMower);
     }
 }

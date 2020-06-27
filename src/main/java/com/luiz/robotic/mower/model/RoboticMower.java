@@ -1,7 +1,5 @@
 package com.luiz.robotic.mower.model;
 
-import com.luiz.robotic.mower.infrastructure.*;
-
 import java.util.Optional;
 
 /**
@@ -38,12 +36,10 @@ public class RoboticMower {
      *
      * @param position the position
      * @param movement the movement
-     * @return the robotic mower
      */
-    public RoboticMower execute(String position, String movement) {
+    public void execute(String position, String movement) {
         deploy(position);
         move(movement);
-        return this;
     }
 
     private void move(String movement) {
@@ -89,13 +85,18 @@ public class RoboticMower {
         return new Orientation(orientation.getCompassDirection(), x, y);
     }
 
+    //    public String getCurrentCoordinates() {
+//        return String.format("%-2d%-2d%s", this.orientation.getX(), this.orientation.getY(),
+//                this.orientation.getCompassDirection().getDirection());
+//    }
+
+
     /**
      * To string of this class
      *
      * @return String current coordinates
      */
-    public String getCurrentCoordinates() {
-        return String.format("%-2d%-2d%s", this.orientation.getX(), this.orientation.getY(),
-                this.orientation.getCompassDirection().getDirection());
+    public Orientation getOrientation() {
+        return orientation;
     }
 }
